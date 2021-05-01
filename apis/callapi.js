@@ -1,5 +1,5 @@
 function getMyIpHttp() {
-    
+    console.log('Hola')
     var request = new XMLHttpRequest()
 
 
@@ -12,4 +12,37 @@ function getMyIpHttp() {
 
     request.send()
 
+}
+
+function getMyIpFetch() {
+
+    var request = new Request('https://randomuser.me/api/?result=3',{
+            method: 'GET',
+            headers: new Headers({'Content-Type' : 'application/json' })
+        });
+
+    fetch(request)
+        .then(function (response){
+            response.json().then(function (respjson){
+                console.log(respjson.results)
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+}
+
+function getMyIp(){
+    $.getJSON('https://api.ipify.org?format=json', function (json){
+        console.log(json)
+        $('#resultado').text(JSON.stringify(json))
+    })
+}
+
+function getMyData(randomNumber){
+    $.getJSON('https://randomuser.me/api/?results='+ randomNumber, function (json){
+        console.log(json.results)
+        $('#resultado').text(JSON.stringify(json.results))
+    })
 }
